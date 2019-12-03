@@ -5,9 +5,7 @@ class TodoForm extends Component {
   constructor() {
     super();
     this.state = {
-      todo: '',
-      id: Date.now(),
-      completed: false
+      todo: ''
     };
   }
 
@@ -15,14 +13,25 @@ class TodoForm extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log([e.target.name], e.target.value);
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    this.props.addItems(this.state.todo);
+
+    this.setState({
+      todo: ''
+    });
   };
 
   render() {
     return (
       <div>
-        <input type='text' onChange={this.handleChange} value={this.state.todo} name='todo' />
-        <button type='btn'>Add to do</button>
+        <form onSubmit={this.handleSubmit}>
+          <input type='text' onChange={this.handleChange} value={this.state.todo} name='todo' />
+          <button type='btn'>Add to do</button>
+        </form>
       </div>
     );
   }
