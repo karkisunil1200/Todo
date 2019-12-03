@@ -7,7 +7,7 @@ const data = [
   {
     task: 'Organize Garage',
     id: 1528817077286,
-    completed: false
+    completed: true
   },
   {
     task: 'Bake Cookies',
@@ -37,11 +37,17 @@ class App extends React.Component {
     });
   };
 
+  clearList = () => {
+    this.setState({
+      data: []
+    });
+  };
+
   render() {
     return (
       <div>
         <TodoList data={this.state.data} />
-        <TodoForm addItems={this.addItems} />
+        <TodoForm addItems={this.addItems} clear={this.clearList} />
       </div>
     );
   }

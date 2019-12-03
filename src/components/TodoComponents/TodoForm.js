@@ -25,12 +25,20 @@ class TodoForm extends Component {
     });
   };
 
+  clearList = e => {
+    e.preventDefault();
+    this.props.clear();
+  };
+
   render() {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
           <input type='text' onChange={this.handleChange} value={this.state.todo} name='todo' />
-          <button type='btn'>Add to do</button>
+          <button type='btn'>Add items</button>
+          <button onClick={this.clearList} type='btn'>
+            Clear list
+          </button>
         </form>
       </div>
     );
