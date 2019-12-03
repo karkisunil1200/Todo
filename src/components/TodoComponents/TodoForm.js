@@ -1,14 +1,28 @@
 import React, {Component} from 'react';
+import {setState} from 'expect/build/jestMatchersObject';
 
 class TodoForm extends Component {
   constructor() {
     super();
+    this.state = {
+      todo: '',
+      id: Date.now(),
+      completed: false
+    };
   }
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+    console.log([e.target.name], e.target.value);
+  };
 
   render() {
     return (
       <div>
-        <h1>Welcome to the Todo Form</h1>
+        <input type='text' onChange={this.handleChange} value={this.state.todo} name='todo' />
+        <button type='btn'>Add to do</button>
       </div>
     );
   }
